@@ -1,0 +1,24 @@
+{
+  "name": "declaration-bundler-webpack4-plugin",
+  "version": "1.0.0",
+  "description": "declaration-bundler-webpack4-plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damingerdai/declaration-bundler-webpack4-plugin.git"
+  },
+  "keywords": [
+    "typescript",
+    "webpack4",
+    "declaration"
+  ],
+  "author": "arthur ming",
+  "license": "Apache License",
+  "bugs": {
+    "url": "https://github.com/damingerdai/declaration-bundler-webpack4-plugin/issues"
+  },
+  "homepage": "https://github.com/damingerdai/declaration-bundler-webpack4-plugin#readme"
+}
