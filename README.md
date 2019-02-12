@@ -108,3 +108,6 @@ declaration-bundler-webpack4-plugin
     ///<reference path="path/to/bundle.d.ts" />
     var foo:some.path.moduleName.Foo = new some.path.moduleName.Foo();
 当您最终在浏览器中加载bundle.js时，将自动调用register函数，这将使类在全局模块路径中可用，以便其他模块可以按照它们从声明文件中所期望的那样访问类。
+
+# 原项目地址
+[GitHub](https://github.com/smol/declaration-bundler-webpack-plugin)
