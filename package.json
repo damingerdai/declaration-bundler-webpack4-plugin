@@ -22,6 +22,9 @@
   },
   "homepage": "https://github.com/damingerdai/declaration-bundler-webpack4-plugin#readme",
   "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-uglify": "^3.0.1",
     "tslint": "^5.12.1"
   }
 }
