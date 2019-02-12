@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/damingerdai/declaration-bundler-webpack4-plugin/issues"
   },
-  "homepage": "https://github.com/damingerdai/declaration-bundler-webpack4-plugin#readme"
+  "homepage": "https://github.com/damingerdai/declaration-bundler-webpack4-plugin#readme",
+  "devDependencies": {
+    "tslint": "^5.12.1"
+  }
 }
