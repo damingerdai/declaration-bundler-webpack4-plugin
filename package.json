@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "node tools/yarn/check-yarn.js"
+    "preinstall": "node tools/yarn/check-yarn.js",
+    "build": "tsc && gulp"
   },
   "repository": {
     "type": "git",
