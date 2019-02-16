@@ -66,7 +66,7 @@ class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
         let declarations = '';
         for (let fileName in declarationFiles) {
             const declarationFile = declarationFiles[fileName];
-            const data = declarationFile._value;
+            const data = declarationFile.source();
 
             const lines = data.split('\n');
             let i = lines.length;
