@@ -5,7 +5,6 @@
   "main": "lib/plugin.min.js",
   "scripts": {
     "test": "node test/index.js",
-    "preinstall": "node tools/yarn/check-yarn.js",
     "build": "tsc && gulp"
   },
   "repository": {
