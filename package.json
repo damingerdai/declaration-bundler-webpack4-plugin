@@ -2,7 +2,7 @@
   "name": "declaration-bundler-webpack4-plugin",
   "version": "1.0.6",
   "description": "declaration-bundler-webpack4-plugin",
-  "main": "lib/plugin.js",
+  "main": "lib/plugin.min.js",
   "scripts": {
     "test": "node test/index.js",
     "preinstall": "node tools/yarn/check-yarn.js",
