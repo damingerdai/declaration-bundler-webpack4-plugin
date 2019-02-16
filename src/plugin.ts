@@ -15,7 +15,7 @@ interface IDeclarationBundlerPlugin {
     apply(compiler: any): void;
 }
 
-export class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
+class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
 
     out: string;
     moduleName: string;
@@ -76,28 +76,29 @@ export class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
                 //exclude empty lines
                 let excludeLine = line === '';
                 //exclude export statements
-                excludeLine = excludeLine || line.indexOf("export =") !== -1;
+                excludeLine = excludeLine || line.indexOf('export =') !== -1;
                 //exclude import statements;
                 excludeLine = excludeLine || (/import ([a-z0-9A-Z_-]+) = require\(/).test(line);
                 //if defined, check for excluded references
-                if (!excludeLine && this.excludedReferences && line.indexOf("<reference") !== -1) {
+                if (!excludeLine && this.excludedReferences && line.indexOf('<reference') !== -1) {
                     excludeLine = this.excludedReferences.some(reference => line.indexOf(reference) !== -1);
                 }
 
                 if (excludeLine) {
                     line.splice(i, 1);
                 } else {
-                    if (line.indexOf("declare ") !== -1) {
-                        lines[i] = line.replace("declare ", "");
+                    if (line.indexOf('declare ') !== -1) {
+                        lines[i] = line.replace('declare ', '');
                     }
                     //add tab
-					lines[i] = "\t" + lines[i];
+					lines[i] = '\t' + lines[i];
                 }
             }
-            declarations += lines.join("\n") + "\n\n";
+            declarations += lines.join('\n') + '\n\n';
         }
-        const output = "declare module "+this.moduleName+"\n{\n" + declarations + "}";
+        const output = 'declare module '+this.moduleName+'\n{\n' + declarations + '}';
         return output;
     }
-
 }
+
+export = DeclarationBundlerPlugin;

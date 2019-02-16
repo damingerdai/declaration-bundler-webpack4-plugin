@@ -4,7 +4,7 @@
   "description": "declaration-bundler-webpack4-plugin",
   "main": "lib/plugin.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node test/index.js",
     "preinstall": "node tools/yarn/check-yarn.js",
     "build": "tsc && gulp"
   },
