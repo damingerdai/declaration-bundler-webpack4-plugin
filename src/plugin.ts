@@ -1,6 +1,7 @@
 interface DeclarationBundler {
     out?: string;
     mode?: string;
+    importModels?: string[],
     excludedReferences?: string[];
 }
 
@@ -9,6 +10,7 @@ type Callback = () => void;
 interface IDeclarationBundlerPlugin {
     out: string;
     excludedReferences: string[];
+    importModels: string[],
 
     apply(compiler: any): void;
 }
@@ -17,10 +19,12 @@ class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
 
     out: string;
     excludedReferences: string[];
+    importModels: string[];
 
     constructor(options: DeclarationBundler) {
         this.out = options.out || './dist/',
         this.excludedReferences = options.excludedReferences || [];
+        this.importModels = options.importModels || [];
     }
 
     apply(compiler: any): void {
@@ -54,6 +58,11 @@ class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
     }
 
     private generateCombinedDeclaration(declarationFiles: any): string {
+        let regExp = /import ([\{A-Za-z0-9 ,\}]+)/;
+        if (this.importModels && this.importModels.length > 0) {
+            regExp = new RegExp("import ([\{A-Za-z0-9 ,\}]+) '(" + this.importModels.join('|') + ")'");
+        }
+        const importLines = [];
         let declarations = '';
         for (let fileName in declarationFiles) {
             const declarationFile = declarationFiles[fileName];
@@ -70,6 +79,11 @@ class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
                 excludeLine = excludeLine || line.indexOf('export =') !== -1;
                 //exclude import statements;
                 excludeLine = excludeLine || (/import ([a-z0-9A-Z_-]+) = require\(/).test(line);
+                const  b = regExp.test(line)
+                excludeLine = excludeLine || regExp.test(line);
+                if (b) {
+                    importLines.push(line);
+                }
                 //if defined, check for excluded references
                 if (!excludeLine && this.excludedReferences && line.indexOf('<reference') !== -1) {
                     excludeLine = this.excludedReferences.some(reference => line.indexOf(reference) !== -1);
@@ -87,7 +101,7 @@ class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
             }
             declarations += lines.join('\n') + '\n\n';
         }
-        return declarations;
+        return importLines.join('\n') + '\n\n' +  declarations;
     }
 }
 
