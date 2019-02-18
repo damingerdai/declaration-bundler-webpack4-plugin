@@ -1,6 +1,5 @@
 interface DeclarationBundler {
     out?: string;
-    moduleName: string;
     mode?: string;
     excludedReferences?: string[];
 }
@@ -9,7 +8,6 @@ type Callback = () => void;
 
 interface IDeclarationBundlerPlugin {
     out: string;
-    moduleName: string;
     excludedReferences: string[];
 
     apply(compiler: any): void;
@@ -18,18 +16,11 @@ interface IDeclarationBundlerPlugin {
 class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
 
     out: string;
-    moduleName: string;
     excludedReferences: string[];
 
     constructor(options: DeclarationBundler) {
-        if (options.moduleName) {
-            this.out = options.out || './dist/',
-                this.excludedReferences = options.excludedReferences || [];
-            this.moduleName = options.moduleName;
-        } else {
-            throw new Error('please set a moduleName if you use mode:internal. new DacoreWebpackPlugin({mode:\'internal\',moduleName:...})');
-        }
-
+        this.out = options.out || './dist/',
+        this.excludedReferences = options.excludedReferences || [];
     }
 
     apply(compiler: any): void {
@@ -91,13 +82,12 @@ class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
                         lines[i] = line.replace('declare ', '');
                     }
                     //add tab
-					lines[i] = '\t' + lines[i];
+                    lines[i] = '\t' + lines[i];
                 }
             }
             declarations += lines.join('\n') + '\n\n';
         }
-        const output = 'declare module '+this.moduleName+'\n{\n' + declarations + '}';
-        return output;
+        return declarations;
     }
 }
 
