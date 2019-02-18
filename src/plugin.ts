@@ -85,7 +85,7 @@ class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
                 }
 
                 if (excludeLine) {
-                    line.splice(i, 1);
+                    lines.splice(i, 1);
                 } else {
                     if (line.indexOf('declare ') !== -1) {
                         lines[i] = line.replace('declare ', '');
