@@ -1,7 +1,7 @@
 interface DeclarationBundler {
     out?: string;
     mode?: string;
-    importModels?: string[],
+    importModules?: string[],
     excludedReferences?: string[];
 }
 
@@ -10,7 +10,7 @@ type Callback = () => void;
 interface IDeclarationBundlerPlugin {
     out: string;
     excludedReferences: string[];
-    importModels: string[],
+    importModules: string[],
 
     apply(compiler: any): void;
 }
@@ -19,12 +19,12 @@ class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
 
     out: string;
     excludedReferences: string[];
-    importModels: string[];
+    importModules: string[];
 
     constructor(options: DeclarationBundler) {
         this.out = options.out || './dist/',
         this.excludedReferences = options.excludedReferences || [];
-        this.importModels = options.importModels || [];
+        this.importModules = options.importModules || [];
     }
 
     apply(compiler: any): void {
@@ -59,8 +59,8 @@ class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
 
     private generateCombinedDeclaration(declarationFiles: any): string {
         let regExp = /import ([\{A-Za-z0-9 ,\}]+)/;
-        if (this.importModels && this.importModels.length > 0) {
-            regExp = new RegExp("import ([\{A-Za-z0-9 ,\}]+) '(" + this.importModels.join('|') + ")'");
+        if (this.importModules && this.importModules.length > 0) {
+            regExp = new RegExp("import ([\{A-Za-z0-9 ,\}]+) '(" + this.importModules.join('|') + ")'");
         }
         const importLines = [];
         let declarations = '';
