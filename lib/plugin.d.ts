@@ -1,19 +1,19 @@
 interface DeclarationBundler {
     out?: string;
     mode?: string;
-    importModels?: string[];
+    importModules?: string[];
     excludedReferences?: string[];
 }
 interface IDeclarationBundlerPlugin {
     out: string;
     excludedReferences: string[];
-    importModels: string[];
+    importModules: string[];
     apply(compiler: any): void;
 }
 declare class DeclarationBundlerPlugin implements IDeclarationBundlerPlugin {
     out: string;
     excludedReferences: string[];
-    importModels: string[];
+    importModules: string[];
     constructor(options: DeclarationBundler);
     apply(compiler: any): void;
     private generateCombinedDeclaration;

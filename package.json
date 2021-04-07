@@ -1,6 +1,6 @@
 {
   "name": "declaration-bundler-webpack4-plugin",
-  "version": "1.0.6-beta.2",
+  "version": "1.0.6-beta.3",
   "description": "declaration-bundler-webpack4-plugin",
   "main": "lib/plugin.min.js",
   "types": "lib/plugin.d.ts",
@@ -27,6 +27,7 @@
     "gulp": "^4.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-uglify": "^3.0.1",
-    "tslint": "^5.12.1"
+    "tslint": "^5.12.1",
+    "typescript": "^3.7.4"
   }
 }
